@@ -1,23 +1,22 @@
-# code here!
 require 'pry'
 
 class School
-  attr_accessor :name, :roster
+  attr_reader :name, :roster, :grade
   
-  def initialize(name)
+  def initialize (name)
     @name = name
     @roster = {}
   end
   
   def add_student (name, grade)
-    if @roster[grade]
+    @name = name
+    @grade = grade
+    if @roster.has_key?(grade)
       @roster[grade] << name
     else
-      @roster[grade] = []
-      @roster[grade] << name
-    end
-    end
-      
+    @roster[grade] = [name]
+  end
+  end
   
   def grade(grade)
     @roster[grade]
@@ -25,11 +24,8 @@ class School
   
   def sort
     @roster.each do |grade, name|
-      @roster[grade] = name.sort
-    end
-  
+      name.sort!
+      end
   end
-
   
-
 end
